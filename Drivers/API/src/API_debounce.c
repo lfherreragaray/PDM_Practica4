@@ -35,14 +35,14 @@ break;
 case Button_Falling: 			  delayRead(&delay);
 					    if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						{
-
+						estadoPulsador=!estadoPulsador;
 						Estado=Button_Down;
 						}
 						else Estado=Button_Up;
 					  break;
 case Button_Down: 				if(!HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						{
-						estadoPulsador=!estadoPulsador;
+
 						Estado=Button_Rising;
 						}
 break;
