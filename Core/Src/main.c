@@ -61,10 +61,10 @@ static void MX_GPIO_Init(void);
   * @retval int
   */
 
-void rutinaLed(delay_t *delay,tick_t*duration)
+void rutinaLed(delay_t *delay,tick_t*duration,bool_t* pulsador)
     {
 
-    if(readKey())
+    if(pulsador)
     	{
     	delayWrite(delay, duration[0]);
     	}
@@ -110,13 +110,18 @@ int main(void)
   delay_t delay_led;
   delayInit(&delay_led, 1);
   tick_t duration[2]={100,500};
+  bool_t pulsador=false;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+      if (readKey())
+	  {
+	  pulsador=!pulsador;
+	  }
     debounceFSM_Update();
-    rutinaLed(&delay_led,&duration);
+    rutinaLed(&delay_led,&duration,&pulsador);
 
 
 

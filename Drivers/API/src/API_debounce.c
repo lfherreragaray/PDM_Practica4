@@ -18,7 +18,7 @@ typedef enum{
 } debounceState_t;
 debounceState_t Estado;//=Button_Up;
 delay_t delay;
-bool_t estadoPulsador;
+bool_t Pulsador=false;
 void debounceFSM_Init(){
 	 Estado=Button_Up;
 	 delayInit(&delay,espera);
@@ -35,10 +35,15 @@ break;
 case Button_Falling: 			  delayRead(&delay);
 					    if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						{
-						estadoPulsador=!estadoPulsador;
+
 						Estado=Button_Down;
 						}
-						else Estado=Button_Up;
+						else
+						{
+						    Pulsador=true;
+						   // buttonPressed();
+						    Estado=Button_Up;
+						}
 					  break;
 case Button_Down: 				if(!HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						{
@@ -55,18 +60,34 @@ case Button_Rising:
 
 						Estado=Button_Up;
 						}
-						else Estado=Button_Down;
+						else
+						{
+						    //buttonReleased();
+						    Estado=Button_Down;
+						}
 break;
 default: Estado= Button_Up;
 
 
 }
+/* void buttonPressed()
+     {
 
+     }
+
+ void buttonReleased()
+      {
+
+      }*/
 
 }
 bool_t readKey()
     {
-    return estadoPulsador;
+    if (Pulsador)
+	{
+	Pulsador=false;
+	return true;
+	}
     }
 
 
