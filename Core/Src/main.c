@@ -64,7 +64,7 @@ static void MX_GPIO_Init(void);
 void rutinaLed(delay_t *delay,tick_t*duration,bool_t* pulsador)
     {
 
-    if(pulsador)
+    if(*pulsador)
     	{
     	delayWrite(delay, duration[0]);
     	}

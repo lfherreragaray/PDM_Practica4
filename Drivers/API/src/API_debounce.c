@@ -1,14 +1,14 @@
 /*
  * API_debounce.c
  *
- *  Created on: Nov 12, 2023
+ *  Created on: Nov 19, 2023
  *      Author: ubuntu
  */
 
+
 #include "API_debounce.h"
 
-void buttonPressed(void);
-void buttonReleased(void);
+
 const uint8_t espera =40;
 typedef enum{
 	Button_Up,
@@ -19,11 +19,15 @@ typedef enum{
 debounceState_t Estado;//=Button_Up;
 delay_t delay;
 bool_t Pulsador=false;
+
+
+
 void debounceFSM_Init(){
 	 Estado=Button_Up;
 	 delayInit(&delay,espera);
 
 }
+
 void debounceFSM_Update(){
 switch (Estado)
 {
@@ -33,16 +37,16 @@ case Button_Up: if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						}
 break;
 case Button_Falling: 			  delayRead(&delay);
-					    if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
+					    if(!HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						{
 
-						Estado=Button_Down;
+						Estado=Button_Up;
 						}
 						else
 						{
-						    Pulsador=true;
-						   // buttonPressed();
-						    Estado=Button_Up;
+
+						    buttonPressed();
+						    Estado=Button_Down;
 						}
 					  break;
 case Button_Down: 				if(!HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
@@ -54,33 +58,33 @@ break;
 
 case Button_Rising:
 						delayRead(&delay);
-						if(!HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
+						if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7))
 						{
 
 
-						Estado=Button_Up;
+						Estado=Button_Down;
 						}
 						else
 						{
-						    //buttonReleased();
-						    Estado=Button_Down;
+						    buttonReleased();
+						    Estado=Button_Up;
 						}
 break;
 default: Estado= Button_Up;
 
-
+    }
 }
-/* void buttonPressed()
+ void buttonPressed()
      {
-
+     Pulsador=true;
      }
 
  void buttonReleased()
       {
 
-      }*/
+      }
 
-}
+
 bool_t readKey()
     {
     if (Pulsador)
@@ -90,5 +94,3 @@ bool_t readKey()
 	}
     return false;
     }
-
-

@@ -147,6 +147,10 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./Drivers/API/src/API_debounce.o
  .data          0x0000000000000000        0x0 ./Drivers/API/src/API_debounce.o
  .bss           0x0000000000000000        0x0 ./Drivers/API/src/API_debounce.o
+ .text.buttonPressed
+                0x0000000000000000        0xc ./Drivers/API/src/API_debounce.o
+ .text.buttonReleased
+                0x0000000000000000        0x2 ./Drivers/API/src/API_debounce.o
  .rodata.espera
                 0x0000000000000000        0x1 ./Drivers/API/src/API_debounce.o
  .text          0x0000000000000000        0x0 ./Drivers/API/src/API_delay.o
@@ -799,136 +803,136 @@ LOAD /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.
                 0x0000000008000578                __aeabi_idiv0
  *(.text*)
  .text.rutinaLed
-                0x000000000800057c       0x2c ./Core/Src/main.o
+                0x000000000800057c       0x30 ./Core/Src/main.o
                 0x000000000800057c                rutinaLed
  .text.SystemClock_Config
-                0x00000000080005a8       0x8c ./Core/Src/main.o
-                0x00000000080005a8                SystemClock_Config
+                0x00000000080005ac       0x8c ./Core/Src/main.o
+                0x00000000080005ac                SystemClock_Config
  .text.startup.main
-                0x0000000008000634       0xc8 ./Core/Src/main.o
-                0x0000000008000634                main
+                0x0000000008000638       0xc8 ./Core/Src/main.o
+                0x0000000008000638                main
  .text.HAL_MspInit
-                0x00000000080006fc       0x38 ./Core/Src/stm32f4xx_hal_msp.o
-                0x00000000080006fc                HAL_MspInit
+                0x0000000008000700       0x38 ./Core/Src/stm32f4xx_hal_msp.o
+                0x0000000008000700                HAL_MspInit
  .text.NMI_Handler
-                0x0000000008000734        0x2 ./Core/Src/stm32f4xx_it.o
-                0x0000000008000734                NMI_Handler
- .text.HardFault_Handler
-                0x0000000008000736        0x2 ./Core/Src/stm32f4xx_it.o
-                0x0000000008000736                HardFault_Handler
- .text.MemManage_Handler
                 0x0000000008000738        0x2 ./Core/Src/stm32f4xx_it.o
-                0x0000000008000738                MemManage_Handler
- .text.BusFault_Handler
+                0x0000000008000738                NMI_Handler
+ .text.HardFault_Handler
                 0x000000000800073a        0x2 ./Core/Src/stm32f4xx_it.o
-                0x000000000800073a                BusFault_Handler
- .text.UsageFault_Handler
+                0x000000000800073a                HardFault_Handler
+ .text.MemManage_Handler
                 0x000000000800073c        0x2 ./Core/Src/stm32f4xx_it.o
-                0x000000000800073c                UsageFault_Handler
- .text.SVC_Handler
+                0x000000000800073c                MemManage_Handler
+ .text.BusFault_Handler
                 0x000000000800073e        0x2 ./Core/Src/stm32f4xx_it.o
-                0x000000000800073e                SVC_Handler
- .text.DebugMon_Handler
+                0x000000000800073e                BusFault_Handler
+ .text.UsageFault_Handler
                 0x0000000008000740        0x2 ./Core/Src/stm32f4xx_it.o
-                0x0000000008000740                DebugMon_Handler
- .text.PendSV_Handler
+                0x0000000008000740                UsageFault_Handler
+ .text.SVC_Handler
                 0x0000000008000742        0x2 ./Core/Src/stm32f4xx_it.o
-                0x0000000008000742                PendSV_Handler
+                0x0000000008000742                SVC_Handler
+ .text.DebugMon_Handler
+                0x0000000008000744        0x2 ./Core/Src/stm32f4xx_it.o
+                0x0000000008000744                DebugMon_Handler
+ .text.PendSV_Handler
+                0x0000000008000746        0x2 ./Core/Src/stm32f4xx_it.o
+                0x0000000008000746                PendSV_Handler
  .text.SysTick_Handler
-                0x0000000008000744        0x4 ./Core/Src/stm32f4xx_it.o
-                0x0000000008000744                SysTick_Handler
- .text._getpid  0x0000000008000748        0x4 ./Core/Src/syscalls.o
-                0x0000000008000748                _getpid
- .text._kill    0x000000000800074c       0x10 ./Core/Src/syscalls.o
-                0x000000000800074c                _kill
- .text._exit    0x000000000800075c        0xc ./Core/Src/syscalls.o
-                0x000000000800075c                _exit
- .text._read    0x0000000008000768       0x1c ./Core/Src/syscalls.o
-                0x0000000008000768                _read
- .text._write   0x0000000008000784       0x1c ./Core/Src/syscalls.o
-                0x0000000008000784                _write
- .text._close   0x00000000080007a0        0x6 ./Core/Src/syscalls.o
-                0x00000000080007a0                _close
- .text._fstat   0x00000000080007a6        0xa ./Core/Src/syscalls.o
-                0x00000000080007a6                _fstat
- .text._isatty  0x00000000080007b0        0x4 ./Core/Src/syscalls.o
-                0x00000000080007b0                _isatty
- .text._lseek   0x00000000080007b4        0x4 ./Core/Src/syscalls.o
-                0x00000000080007b4                _lseek
- .text._sbrk    0x00000000080007b8       0x40 ./Core/Src/sysmem.o
-                0x00000000080007b8                _sbrk
+                0x0000000008000748        0x4 ./Core/Src/stm32f4xx_it.o
+                0x0000000008000748                SysTick_Handler
+ .text._getpid  0x000000000800074c        0x4 ./Core/Src/syscalls.o
+                0x000000000800074c                _getpid
+ .text._kill    0x0000000008000750       0x10 ./Core/Src/syscalls.o
+                0x0000000008000750                _kill
+ .text._exit    0x0000000008000760        0xc ./Core/Src/syscalls.o
+                0x0000000008000760                _exit
+ .text._read    0x000000000800076c       0x1c ./Core/Src/syscalls.o
+                0x000000000800076c                _read
+ .text._write   0x0000000008000788       0x1c ./Core/Src/syscalls.o
+                0x0000000008000788                _write
+ .text._close   0x00000000080007a4        0x6 ./Core/Src/syscalls.o
+                0x00000000080007a4                _close
+ .text._fstat   0x00000000080007aa        0xa ./Core/Src/syscalls.o
+                0x00000000080007aa                _fstat
+ .text._isatty  0x00000000080007b4        0x4 ./Core/Src/syscalls.o
+                0x00000000080007b4                _isatty
+ .text._lseek   0x00000000080007b8        0x4 ./Core/Src/syscalls.o
+                0x00000000080007b8                _lseek
+ .text._sbrk    0x00000000080007bc       0x40 ./Core/Src/sysmem.o
+                0x00000000080007bc                _sbrk
  .text.SystemInit
-                0x00000000080007f8       0x14 ./Core/Src/system_stm32f4xx.o
-                0x00000000080007f8                SystemInit
+                0x00000000080007fc       0x14 ./Core/Src/system_stm32f4xx.o
+                0x00000000080007fc                SystemInit
  .text.Reset_Handler
-                0x000000000800080c       0x50 ./Core/Startup/startup_stm32f401rctx.o
-                0x000000000800080c                Reset_Handler
+                0x0000000008000810       0x50 ./Core/Startup/startup_stm32f401rctx.o
+                0x0000000008000810                Reset_Handler
  .text.Default_Handler
-                0x000000000800085c        0x2 ./Core/Startup/startup_stm32f401rctx.o
-                0x000000000800085c                RTC_Alarm_IRQHandler
-                0x000000000800085c                EXTI2_IRQHandler
-                0x000000000800085c                SPI4_IRQHandler
-                0x000000000800085c                TIM1_CC_IRQHandler
-                0x000000000800085c                DMA2_Stream5_IRQHandler
-                0x000000000800085c                DMA1_Stream5_IRQHandler
-                0x000000000800085c                PVD_IRQHandler
-                0x000000000800085c                SDIO_IRQHandler
-                0x000000000800085c                TAMP_STAMP_IRQHandler
-                0x000000000800085c                EXTI3_IRQHandler
-                0x000000000800085c                TIM1_UP_TIM10_IRQHandler
-                0x000000000800085c                I2C3_ER_IRQHandler
-                0x000000000800085c                EXTI0_IRQHandler
-                0x000000000800085c                I2C2_EV_IRQHandler
-                0x000000000800085c                DMA1_Stream2_IRQHandler
-                0x000000000800085c                FPU_IRQHandler
-                0x000000000800085c                DMA2_Stream2_IRQHandler
-                0x000000000800085c                SPI1_IRQHandler
-                0x000000000800085c                TIM1_BRK_TIM9_IRQHandler
-                0x000000000800085c                DMA2_Stream3_IRQHandler
-                0x000000000800085c                USART6_IRQHandler
-                0x000000000800085c                DMA2_Stream0_IRQHandler
-                0x000000000800085c                TIM4_IRQHandler
-                0x000000000800085c                I2C1_EV_IRQHandler
-                0x000000000800085c                DMA1_Stream6_IRQHandler
-                0x000000000800085c                DMA1_Stream1_IRQHandler
-                0x000000000800085c                TIM3_IRQHandler
-                0x000000000800085c                RCC_IRQHandler
-                0x000000000800085c                Default_Handler
-                0x000000000800085c                EXTI15_10_IRQHandler
-                0x000000000800085c                ADC_IRQHandler
-                0x000000000800085c                DMA1_Stream7_IRQHandler
-                0x000000000800085c                TIM5_IRQHandler
-                0x000000000800085c                DMA2_Stream7_IRQHandler
-                0x000000000800085c                I2C3_EV_IRQHandler
-                0x000000000800085c                EXTI9_5_IRQHandler
-                0x000000000800085c                RTC_WKUP_IRQHandler
-                0x000000000800085c                SPI2_IRQHandler
-                0x000000000800085c                DMA1_Stream0_IRQHandler
-                0x000000000800085c                EXTI4_IRQHandler
-                0x000000000800085c                WWDG_IRQHandler
-                0x000000000800085c                TIM2_IRQHandler
-                0x000000000800085c                OTG_FS_WKUP_IRQHandler
-                0x000000000800085c                TIM1_TRG_COM_TIM11_IRQHandler
-                0x000000000800085c                EXTI1_IRQHandler
-                0x000000000800085c                USART2_IRQHandler
-                0x000000000800085c                I2C2_ER_IRQHandler
-                0x000000000800085c                DMA2_Stream1_IRQHandler
-                0x000000000800085c                FLASH_IRQHandler
-                0x000000000800085c                DMA2_Stream4_IRQHandler
-                0x000000000800085c                USART1_IRQHandler
-                0x000000000800085c                OTG_FS_IRQHandler
-                0x000000000800085c                SPI3_IRQHandler
-                0x000000000800085c                DMA1_Stream4_IRQHandler
-                0x000000000800085c                I2C1_ER_IRQHandler
-                0x000000000800085c                DMA2_Stream6_IRQHandler
-                0x000000000800085c                DMA1_Stream3_IRQHandler
- *fill*         0x000000000800085e        0x2 
+                0x0000000008000860        0x2 ./Core/Startup/startup_stm32f401rctx.o
+                0x0000000008000860                RTC_Alarm_IRQHandler
+                0x0000000008000860                EXTI2_IRQHandler
+                0x0000000008000860                SPI4_IRQHandler
+                0x0000000008000860                TIM1_CC_IRQHandler
+                0x0000000008000860                DMA2_Stream5_IRQHandler
+                0x0000000008000860                DMA1_Stream5_IRQHandler
+                0x0000000008000860                PVD_IRQHandler
+                0x0000000008000860                SDIO_IRQHandler
+                0x0000000008000860                TAMP_STAMP_IRQHandler
+                0x0000000008000860                EXTI3_IRQHandler
+                0x0000000008000860                TIM1_UP_TIM10_IRQHandler
+                0x0000000008000860                I2C3_ER_IRQHandler
+                0x0000000008000860                EXTI0_IRQHandler
+                0x0000000008000860                I2C2_EV_IRQHandler
+                0x0000000008000860                DMA1_Stream2_IRQHandler
+                0x0000000008000860                FPU_IRQHandler
+                0x0000000008000860                DMA2_Stream2_IRQHandler
+                0x0000000008000860                SPI1_IRQHandler
+                0x0000000008000860                TIM1_BRK_TIM9_IRQHandler
+                0x0000000008000860                DMA2_Stream3_IRQHandler
+                0x0000000008000860                USART6_IRQHandler
+                0x0000000008000860                DMA2_Stream0_IRQHandler
+                0x0000000008000860                TIM4_IRQHandler
+                0x0000000008000860                I2C1_EV_IRQHandler
+                0x0000000008000860                DMA1_Stream6_IRQHandler
+                0x0000000008000860                DMA1_Stream1_IRQHandler
+                0x0000000008000860                TIM3_IRQHandler
+                0x0000000008000860                RCC_IRQHandler
+                0x0000000008000860                Default_Handler
+                0x0000000008000860                EXTI15_10_IRQHandler
+                0x0000000008000860                ADC_IRQHandler
+                0x0000000008000860                DMA1_Stream7_IRQHandler
+                0x0000000008000860                TIM5_IRQHandler
+                0x0000000008000860                DMA2_Stream7_IRQHandler
+                0x0000000008000860                I2C3_EV_IRQHandler
+                0x0000000008000860                EXTI9_5_IRQHandler
+                0x0000000008000860                RTC_WKUP_IRQHandler
+                0x0000000008000860                SPI2_IRQHandler
+                0x0000000008000860                DMA1_Stream0_IRQHandler
+                0x0000000008000860                EXTI4_IRQHandler
+                0x0000000008000860                WWDG_IRQHandler
+                0x0000000008000860                TIM2_IRQHandler
+                0x0000000008000860                OTG_FS_WKUP_IRQHandler
+                0x0000000008000860                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0000000008000860                EXTI1_IRQHandler
+                0x0000000008000860                USART2_IRQHandler
+                0x0000000008000860                I2C2_ER_IRQHandler
+                0x0000000008000860                DMA2_Stream1_IRQHandler
+                0x0000000008000860                FLASH_IRQHandler
+                0x0000000008000860                DMA2_Stream4_IRQHandler
+                0x0000000008000860                USART1_IRQHandler
+                0x0000000008000860                OTG_FS_IRQHandler
+                0x0000000008000860                SPI3_IRQHandler
+                0x0000000008000860                DMA1_Stream4_IRQHandler
+                0x0000000008000860                I2C1_ER_IRQHandler
+                0x0000000008000860                DMA2_Stream6_IRQHandler
+                0x0000000008000860                DMA1_Stream3_IRQHandler
+ *fill*         0x0000000008000862        0x2 
  .text.debounceFSM_Init
-                0x0000000008000860       0x18 ./Drivers/API/src/API_debounce.o
-                0x0000000008000860                debounceFSM_Init
+                0x0000000008000864       0x18 ./Drivers/API/src/API_debounce.o
+                0x0000000008000864                debounceFSM_Init
  .text.debounceFSM_Update
-                0x0000000008000878       0x78 ./Drivers/API/src/API_debounce.o
-                0x0000000008000878                debounceFSM_Update
+                0x000000000800087c       0x74 ./Drivers/API/src/API_debounce.o
+                0x000000000800087c                debounceFSM_Update
  .text.readKey  0x00000000080008f0       0x10 ./Drivers/API/src/API_debounce.o
                 0x00000000080008f0                readKey
  .text.delayInit
